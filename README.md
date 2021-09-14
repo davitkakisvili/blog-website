@@ -8,6 +8,6 @@ on going feature rich, functional ,fully fledged website that ive been developin
 ✅vanila javascript
 ✅jquery
 
-about me:
+contact me for more info:davitkakiasvili@gmail.com
 
 
