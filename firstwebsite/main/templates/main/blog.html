@@ -1,0 +1,95 @@
+{% extends './base.html'%}
+{% load static%}
+{% block title%}blog{%endblock%}
+
+{% block css%}{%endblock%}
+{% block content%}
+<section>
+		<div class="container">
+			<div class="row">
+				
+				<div class="col-sm-12">
+					<div class="blog-post-area">
+						<h2 class="title text-center">Latest From our Blog</h2>
+						{%for post in posts%}
+							<div class="single-blog-post">
+							<h3>{{post.title}}</h3>
+							<div class="post-meta">
+								<ul>
+									<li><i class="fa fa-user"></i>{{post.author}}</li>
+									<li><i class="fa fa-calendar"></i>{{post.created_at}}</li>
+								</ul>
+								<span>
+										{{post.rating_count}}
+										
+										{% if post.rating == 0 %}
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										{% elif post.rating == 1 %}
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										{% elif post.rating == 2 %}
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										{% elif post.rating == 3 %}
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										{% elif post.rating == 4 %}
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										{% elif post.rating == 5 %}
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										{%endif%}
+								</span>
+							</div>
+							<a href=" /blog/{{post.title}}">
+								<img src=" {{post.image.url}} " alt="">
+							</a>
+							<p>{{post.content}}</p>
+							<a  class="btn btn-primary" href="/blog/{{post.title}}">Read More</a>
+						</div>
+						{%endfor%}
+						
+						<div class="pagination-area">
+							<ul class="pagination">
+								{%if posts.has_previous%}
+								<li><a href="?page=1"><i class="fa fa-angle-double-left"></i></a></li>
+								<li><a href="?page={{posts.previous_page_number}}">previous</a></li>
+								{% endif %}
+								
+								<li><a href="#" class="active">{{posts.number}}</a></li>
+								{%if posts.has_next%}
+								<li><a href="?page={{posts.next_page_number}}">next</a></li>
+								<li><a href="?page={{posts.paginator.num_pages}}">{{posts.paginator.num_pages}}</a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+
+
+{% endblock %}
+{% block js%}
+{% endblock %}
